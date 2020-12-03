@@ -1,10 +1,14 @@
 import java.util.Date;
 
 public class Person {
-    public String name;
+    private String name;
     private String dateOfBirth;
     private String address;
     private String phoneNumber;
+
+    public Person(){
+
+    }
 
     public Person(String name, String dateOfBirth, String address, String phoneNumber) {
         this.name = name;
@@ -47,12 +51,12 @@ public class Person {
 
     @Override
     public String toString() {
-        return "Person{" +
+        return
                 "name='" + name + '\'' +
                 ", DateOfBirth=" + dateOfBirth +
                 ", address='" + address + '\'' +
-                ", phoneNumber='" + phoneNumber + '\'' +
-                '}';
+                ", phoneNumber='" + phoneNumber + '\''
+                ;
     }
 
     public static void main(String[] args) {

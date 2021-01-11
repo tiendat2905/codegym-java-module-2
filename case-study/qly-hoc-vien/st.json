@@ -1,0 +1,98 @@
+{
+  "1": {
+    "id": 1,
+    "name": "Hai",
+    "sex": "nam",
+    "birthday": "Dec 12, 2000, 12:00:00 AM",
+    "score": [
+      9.0,
+      7.0,
+      8.0,
+      8.0
+    ],
+    "flag1": true,
+    "flag2": false,
+    "flag3": false,
+    "flag4": false
+  },
+  "2": {
+    "id": 2,
+    "name": "Hfa",
+    "sex": "nam",
+    "birthday": "Dec 2, 1995, 12:00:00 AM",
+    "score": [
+      8.25,
+      9.25,
+      9.0,
+      9.0
+    ],
+    "flag1": true,
+    "flag2": true,
+    "flag3": false,
+    "flag4": false
+  },
+  "4": {
+    "id": 4,
+    "name": "Thang",
+    "sex": "nam",
+    "birthday": "Dec 12, 2000, 12:00:00 AM",
+    "score": [
+      8.0,
+      8.0,
+      7.0,
+      7.0
+    ],
+    "flag1": true,
+    "flag2": false,
+    "flag3": false,
+    "flag4": false
+  },
+  "5": {
+    "id": 5,
+    "name": "Tu",
+    "sex": "nam",
+    "birthday": "Dec 12, 2000, 12:00:00 AM",
+    "score": [
+      4.0,
+      6.0,
+      5.0,
+      6.0
+    ],
+    "flag1": true,
+    "flag2": false,
+    "flag3": false,
+    "flag4": false
+  },
+  "7": {
+    "id": 7,
+    "name": "H",
+    "sex": "nu",
+    "birthday": "Dec 22, 1995, 12:00:00 AM",
+    "score": [
+      6.0,
+      9.0,
+      6.0,
+      9.0
+    ],
+    "flag1": true,
+    "flag2": false,
+    "flag3": false,
+    "flag4": false
+  },
+  "8": {
+    "id": 8,
+    "name": "Fsf",
+    "sex": "nam",
+    "birthday": "Dec 12, 1999, 12:00:00 AM",
+    "score": [
+      9.0,
+      1.0,
+      7.0,
+      7.0
+    ],
+    "flag1": true,
+    "flag2": false,
+    "flag3": false,
+    "flag4": false
+  }
+}

@@ -55,7 +55,7 @@ public class Staff extends Person {
                     System.out.println(information()[4]);
                     break;
                 case 4:
-                    System.out.println("thoat");
+                    System.out.println("Thoát khỏi chương trình");
                     break;
                 default:
                     System.out.println("chon sai");

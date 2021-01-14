@@ -10,11 +10,11 @@ public class StudentManage {
     }
 
     public static Student findStudentSubById(int id) {
-       for (Student student: stList){
-           if (id == student.getId())
-               return student;
-       }
-       return null;
+        for (Student student : stList) {
+            if (id == student.getId())
+                return student;
+        }
+        return null;
     }
 
     public static Student findStudentById(int id) {
@@ -71,7 +71,7 @@ public class StudentManage {
         System.out.println("Nhập tên: ");
         String name = scanner.nextLine();
         ArrayList<Student> removing = findStudentByName(name);
-        if (removing.size() == 0){
+        if (removing.size() == 0) {
             System.out.println("không tìm thấy hoc sinh trong danh sách");
             removing.clear();
         }
@@ -102,12 +102,11 @@ public class StudentManage {
                 removeStudentByName();
             }
         }
-        if (removing.size() > 1){
+        if (removing.size() > 1) {
             Print.print(removing);
             System.out.println("Nhập id: ");
             int id = Integer.parseInt(scanner.nextLine());
             Student removing1 = findStudentSubById(id);
-
             if (removing1 != null) {
                 int choice = -1;
                 try {
@@ -164,7 +163,7 @@ public class StudentManage {
         }
     }
 
-    public static void sortStudentByMediumScore()  {
+    public static void sortStudentByMediumScore() {
         StudentFile.readList();
         List<Student> students = new ArrayList<>(list.values());
         SortStudentByMediumScore sortStudentByMediumScore = new SortStudentByMediumScore();
@@ -196,6 +195,5 @@ public class StudentManage {
             student();
         }
     }
-
 
 }

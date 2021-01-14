@@ -7,7 +7,7 @@ public class Student implements Serializable {
     private String name;
     private String sex;
     private Date birthday;
-    private float[] score = new float[4];
+    private final float[] score = new float[4];
     public boolean flag1 = false;
     public boolean flag2 = false;
     public boolean flag3 = false;
@@ -80,5 +80,4 @@ public class Student implements Serializable {
         }
         return total/scoreFactor;
     }
-
 }

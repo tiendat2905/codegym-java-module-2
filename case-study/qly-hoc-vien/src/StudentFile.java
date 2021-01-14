@@ -22,7 +22,7 @@ public class StudentFile {
             Type studentTable = new TypeToken<HashMap<Integer, Student>>() {}.getType();
             StudentManage.list = gson.fromJson(fileReader, studentTable);
             if (StudentManage.list  == null) {
-                StudentManage.list  = new HashMap<Integer, Student>();
+                StudentManage.list  = new HashMap<>();
             }else {
                 int maxId = 0;
                 for (Student st : StudentManage.list.values()){
@@ -33,7 +33,7 @@ public class StudentFile {
                 AddStudent.currentId = maxId;
             }
         } catch (IOException e) {
-            StudentManage.list  = new HashMap<Integer, Student>();
+            StudentManage.list  = new HashMap<>();
         }
     }
 }

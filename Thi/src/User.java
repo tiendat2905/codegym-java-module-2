@@ -6,13 +6,13 @@ public class User {
     private String name;
     private String sex;
     private String address;
-    private Date birthday;
+    private String birthday;
     private String email;
 
     public User() {
     }
 
-    public User(String phoneNumber, String group, String name, String sex, String address, Date birthday, String email) {
+    public User(String phoneNumber, String group, String name, String sex, String address, String birthday, String email) {
         this.phoneNumber = phoneNumber;
         this.group = group;
         this.name = name;
@@ -59,11 +59,11 @@ public class User {
         this.group = group;
     }
 
-    public Date getBirthday() {
+    public String getBirthday() {
         return birthday;
     }
 
-    public void setBirthday(Date birthday) {
+    public void setBirthday(String birthday) {
         this.birthday = birthday;
     }
 
@@ -80,8 +80,7 @@ public class User {
     }
 
     public String getCVS() {
-        return String.format("\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\"",
-                phoneNumber, group, name, sex, address, email, birthday);
+        return String.format("%s,%s,%s,%s,%s,%s,%s",phoneNumber, group, name, sex, address, email, birthday);
     }
 
     @Override

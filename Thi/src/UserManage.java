@@ -1,7 +1,4 @@
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 public class UserManage {
     static List<User> userList = new ArrayList<>();
@@ -11,21 +8,27 @@ public class UserManage {
     public static void addUser() {
         int amount = Validate.validateNumber("nhập số lượng muốn thêm vào: ");
         for (int i = 0; i < amount; i++) {
-            String phoneNumber = Validate.validatePhoneNumber("Nhập số điện thoại: ");
+            String phoneNumber = null;
+            while (phoneNumber == null) {
+                phoneNumber = Validate.validatePhoneNumber("Nhập số điện thoại: ");
+            }
+
             System.out.println("Nhập nhóm: ");
             String group = scanner.nextLine();
+
             String name = Validate.validateName("Nhập tên người dùng: ");
+
             String sex = Validate.validateSex("Nhập giới tính: " + "(nam-Nam, nu-Nu)");
-            System.out.println("Nhập địa chỉ");
-            String address = scanner.nextLine();
-            Date birthday = null;
-            while (birthday == null) {
-                System.out.println("Nhập ngày tháng năm sinh: " + "(dd/MM/yyyy)");
-                String value = scanner.nextLine();
-                birthday = Validate.validateDate(value);
-            }
+
+            String address = Validate.validateAddress();
+
+            String birthday = Validate.validateDayOfBirth();
+
             System.out.println("nhập email: ");
-            String email = scanner.nextLine();
+            String email;
+            do {
+                email = scanner.nextLine();
+            } while (!Validate.isEmailValid(email));
             User user = new User(phoneNumber, group, name, sex, address, birthday, email);
             userList.add(user);
         }
@@ -53,30 +56,40 @@ public class UserManage {
     public static void updatePhone() {
         System.out.println("nhập số điện thoại");
         String phone = scanner.nextLine();
-        ArrayList<User> user = findByPhoneNumber(phone);
-        if (user.size() == 0) {
+        ArrayList<User> users = findByPhoneNumber(phone);
+        if (users.size() == 0) {
             System.out.println("không tìm thấy số trong danh bạ");
-            user.clear();
-        }else {
-            System.out.println("nhập nhóm mới: ");
-            String group = scanner.nextLine();
-            userList.get(Integer.parseInt(phone)).setGroup(group);
-            userList.get(Integer.parseInt(phone)).setName("nhập tên mới");
-            userList.get(Integer.parseInt(phone)).setSex("Nhập giới tính");
-            System.out.println("nhập địa chỉ mới: ");
-            String address = scanner.nextLine();
-            userList.get(Integer.parseInt(phone)).setAddress(address);
-            System.out.println("nhập email: ");
-            String email = scanner.nextLine();
-            userList.get(Integer.parseInt(phone)).setEmail(email);
+            users.clear();
+            return;
         }
+
+        for (User user : users) {
+            System.out.println("Nhập nhóm: ");
+            String group = scanner.nextLine();
+            user.setGroup(group);
+            user.setName(Validate.validateName("Nhập tên người dùng: "));
+
+            user.setSex(Validate.validateSex("Nhập giới tính: " + "(nam-Nam, nu-Nu)"));
+
+            user.setAddress(Validate.validateAddress());
+
+            user.setBirthday(Validate.validateDayOfBirth());
+
+            System.out.println("nhập email: ");
+            String email;
+            do {
+                email = scanner.nextLine();
+                user.setEmail(email);
+            } while (!Validate.isEmailValid(email));
+        }
+
     }
 
     public static void searchUserByName() {
         System.out.println("nhập tên");
         String name = scanner.nextLine();
         ArrayList<User> user = findByName(name);
-        if (user == null) {
+        if (user.size() == 0) {
             System.out.println("không tìm thấy");
             return;
         }
@@ -86,8 +99,8 @@ public class UserManage {
     public static void searchUserByPhoneNumber() {
         System.out.println("nhập số điện thoại");
         String phone = scanner.nextLine();
-        ArrayList<User> user = findByName(phone);
-        if (user == null) {
+        ArrayList<User> user = findByPhoneNumber(phone);
+        if (user.size() == 0) {
             System.out.println("không tìm thấy");
             return;
         }
@@ -119,6 +132,10 @@ public class UserManage {
         }
     }
 
+    public static void saveToCVS() {
+        UserFile.saveList();
+    }
+
     public static void writeFile() {
         int choice = -1;
         try {
@@ -129,7 +146,8 @@ public class UserManage {
                 choice = Integer.parseInt(scanner.nextLine());
                 switch (choice) {
                     case 1:
-                        UserFile.saveList();
+                        saveToCVS();
+                        user();
                         break;
                     case 2:
                         break;
@@ -143,31 +161,59 @@ public class UserManage {
         }
     }
 
-    public static void readFile(){
+    public static void readFromCVS() {
+        List<User> users = UserFile.readList();
+        if (users != null)
+            userList = users;
+    }
 
+    public static void readFileCVS() {
+        int choice = -1;
+        try {
+            while (choice != 2) {
+                System.out.println("Đọc CVS sẽ xóa toàn bộ dữ liệu trong bộ nhớ trước khi nhập dữ liệu mới");
+                System.out.println("1.Yes");
+                System.out.println("2.No");
+                choice = Integer.parseInt(scanner.nextLine());
+                switch (choice) {
+                    case 1:
+                        readFromCVS();
+                        user();
+                        break;
+                    case 2:
+                        break;
+                    default:
+                        System.out.println("Nhập sai, nhập lại");
+                }
+            }
+        } catch (NumberFormatException e) {
+            System.err.println("Nhập sai mời nhập lại");
+            writeFile();
+        }
     }
 
     public static void removeUser() {
         System.out.println("Nhập số điện thoại: ");
         String phone = scanner.nextLine();
         ArrayList<User> removing = findByPhoneNumber(phone);
-        if (removing.size() == 0){
-            System.out.println("không tìm thấy hoc sinh trong danh sách");
+
+        if (removing.size() == 0) {
+            System.out.println("không tìm thấy trong danh bạ");
             removing.clear();
-        }else
+        } else {
             Print.print(removing);
             int choice = -1;
             try {
                 while (choice != 2) {
-                    System.out.println("Bạn có muốn xóa học sinh này");
+                    System.out.println("Bạn có muốn xóa không");
                     System.out.println("1.Yes");
                     System.out.println("2.No");
                     choice = Integer.parseInt(scanner.nextLine());
                     switch (choice) {
                         case 1:
                             userList.remove(phone);
-                            UserFile.saveList();
-                            System.out.println("Đã xóa học sinh");
+                            System.out.println("Đã xóa danh bạ");
+                            user();
                             break;
                         case 2:
                             break;
@@ -180,6 +226,7 @@ public class UserManage {
                 removeUser();
             }
         }
+    }
 
 
     public static void user() {
@@ -193,8 +240,8 @@ public class UserManage {
                     case 2 -> addUser();
                     case 3 -> updatePhone();
                     case 4 -> removeUser();
-                    case 5 ->searchUser();
-//                    case 6 ->
+                    case 5 -> searchUser();
+                    case 6 -> readFileCVS();
                     case 7 -> writeFile();
                     case 8 -> System.out.println("Thoát chương trình");
                     default -> System.out.println("Nhập sai mời nhập lại");

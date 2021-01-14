@@ -19,10 +19,12 @@ public class Validate {
             String name = scanner.nextLine().trim().replaceAll("\\s+", " ");
             if (!namePattern.matcher(name).matches())
                 throw new Exception("invalid name");
-            String[] word = name.split(" ");
+            String[] words = name.split(" ");
             StringBuilder result = new StringBuilder();
-            for (String s : word) {
-                result.append(s.substring(0, 1).toUpperCase()).append(s.substring(1)).append(" ");
+            for (String word : words) {
+                result.append(word.substring(0, 1).toUpperCase())
+                        .append(word.substring(1).toLowerCase())
+                        .append(" ");
             }
             return result.toString().trim();
         } catch (Exception e) {

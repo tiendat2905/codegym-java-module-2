@@ -674,6 +674,8 @@ public class AddStudentScore {
                 student.flag1 = true;
                 student.setScore(sc, 0);
                 StudentFile.saveList();
+            }else {
+                System.out.println("điểm của " + student.getName() + " đã được nhập");
             }
         }
     }
@@ -683,9 +685,11 @@ public class AddStudentScore {
             if (!student.flag2) {
                 System.out.println("Nhập điểm của " + student.getName());
                 float sc = Validate.validateScore("Nhập điểm: ");
-                student.flag1 = true;
+                student.flag2 = true;
                 student.setScore(sc, 1);
                 StudentFile.saveList();
+            }else {
+                System.out.println("điểm của " + student.getName() + " đã được nhập");
             }
         }
     }
@@ -695,9 +699,11 @@ public class AddStudentScore {
             if (!student.flag3) {
                 System.out.println("Nhập điểm của " + student.getName());
                 float sc = Validate.validateScore("Nhập điểm: ");
-                student.flag1 = true;
+                student.flag3 = true;
                 student.setScore(sc, 2);
                 StudentFile.saveList();
+            }else {
+                System.out.println("điểm của " + student.getName() + " đã được nhập");
             }
         }
     }
@@ -707,9 +713,11 @@ public class AddStudentScore {
             if (!student.flag4) {
                 System.out.println("Nhập điểm của " + student.getName());
                 float sc = Validate.validateScore("Nhập điểm: ");
-                student.flag1 = true;
+                student.flag4 = true;
                 student.setScore(sc, 3);
                 StudentFile.saveList();
+            }else {
+                System.out.println("điểm của " + student.getName() + " đã được nhập");
             }
         }
     }

@@ -3,9 +3,6 @@ import java.util.List;
 import java.util.Scanner;
 
 public class Print {
-    static Scanner scanner = new Scanner(System.in);
-
-
 
     public static void studentMenu() {
         System.out.println("-------Sửa thông tin học viên--------");
@@ -16,7 +13,7 @@ public class Print {
     }
 
     public static void findMenu() {
-        System.out.println("----------find-----------");
+        System.out.println("----------Tìm kiếm-----------");
         System.out.println("1.Tìm kiếm bằng id");
         System.out.println("2.Tìm kiếm bằng name");
         System.out.println("3.Quay lại");
@@ -67,7 +64,7 @@ public class Print {
             float[] scores = student.getScore();
             for (float sc : scores) {
                 if (sc == -1)
-                    System.out.format("%-15s | ", "chua co");
+                    System.out.format("%-15s | ", " ");
                 else
                     System.out.format("%-15.2f | ", sc);
             }
